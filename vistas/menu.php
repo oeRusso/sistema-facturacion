@@ -1,11 +1,11 @@
-
-
 <!DOCTYPE html>
 <html>
+
 <head>
-    <?php require_once "dependencias.php" ?>
+  <?php require_once "dependencias.php" ?>
   <title>Ventas</title>
 </head>
+
 <body>
 
   <!-- Begin Navbar -->
@@ -28,52 +28,60 @@
             <li class="active"><a href="inicio.php"><span class="glyphicon glyphicon-home"></span> Inicio</a>
             </li>
 
-            
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Administrar Articulos <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="categorias.php">Categorias</a></li>
-              <li><a href="articulos.php">Articulos</a></li>
-            </ul>
-          </li>
 
-
-       
-           <li><a href="usuarios.php"><span class="glyphicon glyphicon-user"></span> Administrar usuarios</a>
             </li>
-      
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Administrar Articulos <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="categorias.php">Categorias</a></li>
+                <li><a href="articulos.php">Articulos</a></li>
+              </ul>
+            </li>
+
+            <?php
+            if ($_SESSION['usuario'] == 'admin') :
+            ?>
+
+              <li><a href="usuarios.php"><span class="glyphicon glyphicon-user"></span> Administrar usuarios</a>
+              </li>
+
+            <?php
+            endif;
+            ?>
 
 
-           <li><a href="clientes.php"><span class="glyphicon glyphicon-user"></span> Clientes</a>
-          </li>
-          <li><a href="ventas.php"><span class="glyphicon glyphicon-usd"></span> Vender Articulo</a>
-          </li>
-          
-          <li class="dropdown" >
-            <a href="#" style="color: red"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Usuario:  <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li> <a style="color: red" href="../procesos/salir.php"><span class="glyphicon glyphicon-off"></span> Salir</a></li>
-              
-            </ul>
-          </li>
-        </ul>
+
+            <li><a href="clientes.php"><span class="glyphicon glyphicon-user"></span> Clientes</a>
+            </li>
+            <li><a href="ventas.php"><span class="glyphicon glyphicon-usd"></span> Vender Articulo</a>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" style="color: red" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Usuario:
+                <?php echo $_SESSION['usuario'] ?> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li> <a style="color: red" href="../procesos/salir.php"><span class="glyphicon glyphicon-off"></span> Salir</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!--/.nav-collapse -->
       </div>
-      <!--/.nav-collapse -->
+      <!--/.contatiner -->
     </div>
-    <!--/.contatiner -->
   </div>
-</div>
-<!-- Main jumbotron for a primary marketing message or call to action -->
+  <!-- Main jumbotron for a primary marketing message or call to action -->
 
 
 
 
 
-<!-- /container -->        
+  <!-- /container -->
 
 
 </body>
+
 </html>
 
 <script type="text/javascript">
@@ -81,10 +89,8 @@
     if ($(document).scrollTop() > 150) {
       $('.logo').height(200);
 
-    }
-    else {
+    } else {
       $('.logo').height(100);
     }
-  }
-  );
+  });
 </script>

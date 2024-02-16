@@ -51,12 +51,12 @@ if (isset($_SESSION['usuario'])) {
             $('#tablasClientesLoad').load("clientes/tablaCliente.php");
             $('#btnAgregarCliente').click(function() {
 
-                vacios = validarFormVacio('frmClientes');
+                /*vacios = validarFormVacio('frmClientes');
 
                 if (vacios > 0) {
                     alertify.alert("Debes llenar todos los campos!!");
                     return false;
-                }
+                }*/
 
                 datos = $('#frmClientes').serialize();
                 $.ajax({
@@ -64,6 +64,7 @@ if (isset($_SESSION['usuario'])) {
                     data: datos,
                     url: "../procesos/clientes/agregaCliente.php",
                     success: function(r) {
+                        console.log(r);
                         if (r == 1) {
                             $('#tablasClientesLoad').load("clientes/tablaCliente.php");
                             alertify.success("Categoria agregada con exito");

@@ -57,7 +57,7 @@ if (isset($_SESSION['usuario'])) {
             </div>
         </div>
 
-      
+
 
         <!-- Modal -->
         <div class="modal fade" id="abreModalUpdateArticulo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -73,9 +73,9 @@ if (isset($_SESSION['usuario'])) {
                             <label for="">Categoria</label>
                             <select class="form-control input-sm" id="categoriaSelectU" name="categoriaSelectU">
                                 <option value="A">Selecciona Categoria</option>
-                                <?php 
-                                     $sql = "SELECT id_categoria,nombreCategoria FROM categorias";
-                                     $result = mysqli_query($conexion, $sql);
+                                <?php
+                                $sql = "SELECT id_categoria,nombreCategoria FROM categorias";
+                                $result = mysqli_query($conexion, $sql);
                                 ?>
                                 <?php while ($ver = mysqli_fetch_row($result)) :  ?>
                                     <option value="<?php echo $ver[0] ?>"><?php echo $ver[1]; ?></option>
@@ -89,8 +89,6 @@ if (isset($_SESSION['usuario'])) {
                             <input type="text" class="form-control input-sm" id="cantidadU" name="cantidadU">
                             <label for="">Precio</label>
                             <input type="text" class="form-control input-sm" id="precioU" name="precioU">
-                            <p></p>
-                            <span id="btnAgregaArticulo" class="btn btn-primary">Agregar </span>
                         </form>
 
                     </div>
@@ -110,12 +108,68 @@ if (isset($_SESSION['usuario'])) {
                 data: "idart=" + idarticulo,
                 url: "../procesos/articulos/obtenDatosArticulos.php",
                 success: function(r) {
-                    alert(r);
                     dato = jQuery.parseJSON(r);
+                    $('#idArticulo').val(dato['id_producto']);
+
+                    $('#categoriaSelectU').val(dato['id_categoria']);
+
+                    $('#nombreU').val(dato['nombre']);
+
+                    $('#descripcionU').val(dato['descripcion']);
+
+                    $('#cantidadU').val(dato['cantidad']);
+
+                    $('#precioU').val(dato['precio']);
+
                 }
             });
         }
+
+        
+        function eliminaArticulo(idarticulo) {
+            alertify.confirm('Desea eliminar este articulo?', function() {
+                $.ajax({
+                    type: "POST",
+                    data: "idarticulo=" + idarticulo,
+                    url: "../procesos/articulos/eliminaArticulo.php",
+                    success: function(r) {
+
+                        if (r == 1) {
+                            $('#tablaArticulosLoad').load("articulos/tablaArticulo.php");
+                            alertify.success("Eliminado con exito!");
+                        } else {
+                            alertify.error("No se pudo eliminar ")
+                        }
+                    }
+                });
+            }, function() {
+                alertify.error('Cancelo!')
+            });   
+        }
+        
     </script>
+    <script>
+        $(document).ready(function() {
+            $('#btnActualizaArticulo').click(function() {
+
+                datos = $('#frmArticulosU').serialize();
+                $.ajax({
+                    type: "POST",
+                    data: datos,
+                    url: "../procesos/articulos/actualizaArticulos.php",
+                    success: function(r) {
+                        if (r==1) {
+                            $('#tablaArticulosLoad').load("articulos/tablaArticulo.php");
+                            alertify.success("Actualizado con exito");
+                        }else{
+                            alertify.error("Error al actualizar");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
     <script>
         $(document).ready(function() {
 
