@@ -1,2 +1,4 @@
-parte 23, min 17.20
+parte 41, min 6
+
+//TODO: acordate que tenesmoq ue reparar lo del mensaje de la venta
 

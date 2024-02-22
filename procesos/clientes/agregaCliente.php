@@ -4,6 +4,10 @@ session_start();
 require_once '../../clases/conexion.php';
 require_once '../../clases/clientes.php';
 
+$obj = new Clientes();
+
+
+
 $datos = array(
     $_POST['nombre'],
     $_POST['apellido'],
@@ -12,3 +16,6 @@ $datos = array(
     $_POST['telefono'],
     $_POST['rfc']
 );
+
+
+echo $obj->agregaCliente($datos);

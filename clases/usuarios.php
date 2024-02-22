@@ -81,8 +81,7 @@ class Usuarios
         $c = new Conectar();
         $conexion = $c->conexion();
         $sql = "UPDATE usuarios SET nombre='$datos[1]', apellido='$datos[2]', email='$datos[3]' WHERE id_usuario='$datos[0]'";
-        $result = mysqli_query($conexion, $sql);
-
+       
         return mysqli_query($conexion, $sql);
     }
 
