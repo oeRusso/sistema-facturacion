@@ -11,11 +11,7 @@ $sql = "SELECT id_venta, fechaCompra, id_cliente FROM ventas GROUP BY id_venta";
 
 $result = mysqli_query($conexion, $sql);
 
-
-
 ?>
-
-
 
 <h2>Reportes y ventas</h2>
 <div class="row">
@@ -28,7 +24,7 @@ $result = mysqli_query($conexion, $sql);
                     <td>Folio</td>
                     <td>Fecha</td>
                     <td>Cliente</td>
-                    <td>Total de compra</td>
+                    <td>Total de venta</td>
                     <td>Ticket</td>
                     <td>Reporte</td>
                 </tr>
@@ -38,7 +34,7 @@ $result = mysqli_query($conexion, $sql);
                         <td><?php echo $ver[1] ?></td>
                         <td>
                             <?php
-                            if ($obj->nombreCliente($ver[2]) == "") {
+                            if (@$obj->nombreCliente($ver[2])== " ") {
                                 echo "S/C";
                             } else {
                                 echo $obj->nombreCliente($ver[2]);
@@ -56,7 +52,7 @@ $result = mysqli_query($conexion, $sql);
                             </a>
                         </td>
                         <td>
-                            <a href="#" class="btn btn-danger btn-sm">
+                            <a href="../procesos/ventas/crearReportePdf.php?idventa=<?php echo $ver[0]?>" class="btn btn-danger btn-sm">
                                 Reporte <span class="glyphicon glyphicon-file "></span>
                             </a>
                         </td>

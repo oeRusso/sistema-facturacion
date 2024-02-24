@@ -1,4 +1,4 @@
-parte 41, min 6
+parte 42, min 11
 
-//TODO: acordate que tenesmoq ue reparar lo del mensaje de la venta
+//TODO: fijate pq no lee las imagenes el html del reporte
 
