@@ -57,8 +57,6 @@ if (isset($_SESSION['usuario'])) {
             </div>
         </div>
 
-
-
         <!-- Modal -->
         <div class="modal fade" id="abreModalUpdateArticulo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-sm" role="document">

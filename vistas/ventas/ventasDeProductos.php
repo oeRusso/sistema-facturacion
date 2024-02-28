@@ -74,7 +74,7 @@ $conexion = $c->conexion();
                     $('#cantidadV').val(dato['cantidad']);
                     $('#precioV').val(dato['precio']);
 
-                    $('#imgProducto').prepend('<img class="img-thumbnail" id="imgp" src="' + dato['ruta'] + '" />');
+                    // $('#imgProducto').prepend('<img class="img-thumbnail" id="imgp" src="' + dato['ruta'] + '" />');
 
                 }
             });
@@ -140,7 +140,7 @@ $conexion = $c->conexion();
                 }else if(r==0){
                     alertify.alert("No hay lista de venta");
                 }else{
-                    alertify.error("No se pudo crear la venta");
+                    // alertify.error("No se pudo crear la venta");
                 }
 			}
 		});

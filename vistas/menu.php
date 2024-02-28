@@ -19,7 +19,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="inicio.php"><img class="img-responsive logo img-thumbnail" src="../img/almacenagustin.jpg" alt="" width="150px" height="150px"></a>
+          <a class="navbar-brand" href="inicio.php"><img class=" img-thumbnail" src="../img/almacenagustin.jpg" alt="" width="150px" height="150px"></a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
 
@@ -37,9 +37,11 @@
                 <li><a href="articulos.php">Articulos</a></li>
               </ul>
             </li>
+            <li><a href="buscarArticulo.php"><span class="glyphicon glyphicon-search"></span> Buscar Producto</a>
+            </li>
 
             <?php
-            if ($_SESSION['usuario'] == 'admin') :
+            if (@$_SESSION['usuario'] == 'admin') :
             ?>
 
               <li><a href="usuarios.php"><span class="glyphicon glyphicon-user"></span> Administrar usuarios</a>
@@ -58,7 +60,7 @@
 
             <li class="dropdown">
               <a href="#" style="color: red" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Usuario:
-                <?php echo $_SESSION['usuario'] ?> <span class="caret"></span></a>
+                <?php echo @$_SESSION['usuario'] ?> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li> <a style="color: red" href="../procesos/salir.php"><span class="glyphicon glyphicon-off"></span> Salir</a></li>
 

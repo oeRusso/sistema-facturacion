@@ -79,9 +79,9 @@ if (isset($_SESSION['usuario'])) {
                     data: datos,
                     url: "../procesos/categorias/agregaCategoria.php",
                     success: function(r) {
-
-                        console.log(r);
                         if (r == 1) {
+                            $('#frmCategorias')[0].reset();
+                            $('#tablaCategoriaLoad').load("categorias/tablaCategoria.php");
                             alertify.success("Categoria agregada con exito");
                         } else {
                             alertify.error("No se pudo agregar categoria");

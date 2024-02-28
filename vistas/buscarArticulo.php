@@ -1,6 +1,6 @@
 <?php
 
-require_once '../../clases/conexion.php';
+require_once '../clases/conexion.php';
 
 $c = new Conectar();
 $conexion = $c->Conexion();
@@ -11,9 +11,20 @@ $sql = " SELECT art.nombre,art.descripcion,art.cantidad,art.precio , img.ruta, c
                 INNER JOIN categorias cat ON art.id_categoria = cat.id_categoria";
 $result = mysqli_query($conexion, $sql);
 ?>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <?php require_once "menu.php" ?>
+    
 
-    <table class="table table-hover table-condensed table-bordered" style="text-align: center;">
+</head>
+
+<body>
+    <table class="table table-hover table-condensed table-bordered" style="text-align: center; width:70%" id="table">
         <caption><label for="">Articulos</label></caption>
         <thead>
             <tr>
@@ -23,8 +34,6 @@ $result = mysqli_query($conexion, $sql);
                 <td>Precio</td>
                 <td>Imagen</td>
                 <td>Categoria</td>
-                <td>Editar</td>
-                <td>Eliminar</td>
             </tr>
         </thead>
         <tbody>
@@ -44,21 +53,15 @@ $result = mysqli_query($conexion, $sql);
                         <img width="100" height="100" src="<?php echo $imgRuta ?>" alt="foto de algun producto">
                     </td>
                     <td><?php echo $ver[5] ?></td>
-                    <td>
-                        <span data-toggle="modal" data-target="#abreModalUpdateArticulo" class="btn btn-warning btn-xs" onclick="agregaDatosArticulo('<?php echo $ver[6] ?>')">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </span>
-                    </td>
-                    <td>
-                        <span class="btn btn-danger btn-xs" onclick="eliminaArticulo('<?php echo $ver[6] ?>')">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </span>
-                    </td>
                 </tr>
             <?php endwhile; ?>
         </tbody>
 
 
     </table>
-  
-   
+    <script>
+        let table = new DataTable('#table');
+    </script>
+</body>
+
+</html>
