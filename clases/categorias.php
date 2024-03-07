@@ -46,4 +46,5 @@ class Categorias
         return mysqli_query($conexion, $sql);
 
     }
+
 }

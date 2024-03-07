@@ -1,44 +1,64 @@
-`ventas`SELECT*FROM usuarios;
+CREATE SCHEMA `ventas` DEFAULT CHARACTER SET utf8mb4 ;
 
-SELECT*FROM clientes;
-SELECT*FROM categorias;
-SELECT*FROM imagenes;
-SELECT*FROM articulos;
-SELECT*FROM usuarios;
-SELECT*FROM ventas;
+use ventas;
 
+create table usuarios(
+				id_usuario int auto_increment,
+				nombre varchar(50),
+				apellido varchar(50),
+				email varchar(50),
+				password text(50),
+				fechaCaptura date,
+				primary key(id_usuario)
+					);
 
+create table categorias (
+				id_categoria int auto_increment,
+				id_usuario int not null,
+				nombreCategoria varchar(150),
+				fechaCaptura date,
+				primary key(id_categoria)
+						);
 
+create table imagenes(
+				id_imagen int auto_increment,
+				id_categoria int not null,
+				nombre varchar(500),
+				ruta varchar(500),
+				fechaSubida date,
+				primary key(id_imagen)
+					);
+create table articulos(
+				id_producto int auto_increment,
+				id_categoria int not null,
+				id_imagen int not null,
+				id_usuario int not null,
+				nombre varchar(50),
+				descripcion varchar(500),
+				cantidad int,
+				precio float,
+				fechaCaptura date,
+				primary key(id_producto)
 
-TRUNCATE TABLE ventas;
-TRUNCATE TABLE clientes;
-TRUNCATE TABLE imagenes;
-TRUNCATE TABLE articulos;
-TRUNCATE TABLE categorias;
+						);
 
-
-
-
-
-
-
-SELECT art.nombre,art.descripcion,art.cantidad,art.precio , img.ruta, cat.nombreCategoria
-        FROM articulos art INNER JOIN imagenes img ON art.id_imagen = img.id_imagen
-			   INNER JOIN categorias cat ON art.id_categoria = cat.id_categoria;
-			   
-			   
-			   SELECT id_producto,id_categoria,nombre,descripcion,cantidad,precio FROM articulos WHERE id_producto = 3;
-			   
-SELECT ve.id_venta,ve.fechaCompra,cli.nombre,cli.apellido,art.nombre,art.precio,art.descripcion FROM ventas ve INNER JOIN clientes cli ON ve.id_cliente=cli.id_cliente
- INNER JOIN articulos art ON ve.id_producto=art.id_producto AND ve.id_venta=1;
- 
-        SELECT ve.id_venta,
-               ve.fechaCompra,
-               ve.id_cliente,
-               art.nombre,
-               art.precio,
-               art.descripcion 
-               FROM ventas ve 
-               INNER JOIN articulos art 
-               ON ve.id_producto=art.id_producto 
-               AND ve.id_venta=1;
+create table clientes(
+				id_cliente int auto_increment,
+				id_usuario int not null,
+				nombre varchar(200),
+				apellido varchar(200),
+				direccion varchar(200),
+				email varchar(200),
+				telefono varchar(200),
+				rfc varchar(200),
+				primary key(id_cliente)
+					);
+-- Recuerda agregar el id de usuario por favor 
+create table ventas(
+				id_venta int not null,
+				id_cliente int,
+				id_producto int,
+				id_usuario int,
+				precio float,
+				fechaCompra date
+					);
